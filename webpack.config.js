@@ -16,8 +16,10 @@ module.exports = {
     [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './static/index.html'),
+            favicon: "./favicon.ico",
             minify: true
         }),
+
         new MiniCSSExtractPlugin()
     ],
     module:
