@@ -1,6 +1,7 @@
 // Import three
 //import { kebabCase } from 'lodash';
 import * as THREE from 'three';
+import { BoxLineGeometry } from 'three/examples/jsm/geometries/BoxLineGeometry.js';
 // Import the default VRButton
 import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 
@@ -20,20 +21,28 @@ light.position.set(1, 1, 1).normalize();
 scene.add(light);
 scene.add(new THREE.AmbientLight(0xffffff,0.5))
 
+// add a "room" box
+var room = new THREE.LineSegments(
+  new BoxLineGeometry( 6, 6, 6, 10, 10, 10 ),
+  new THREE.LineBasicMaterial( { color: 0x808080 } )
+);
+room.geometry.translate( 0, 3, 0 );
+scene.add( room );
+
 // Make the shapes
-let tetra = createTetrahedron(2, 'mediumspringgreen', new THREE.Vector3(0, 5.6, -10));
+let tetra = createTetrahedron(0.5, 'mediumspringgreen', new THREE.Vector3(0, 2.6, -2));
 scene.add(tetra);
 
-let cube = createCube(2, 'lightsalmon', new THREE.Vector3(-4, 1.6, -10));
+let cube = createCube(0.5, 'lightsalmon', new THREE.Vector3(-1, 1.6, -2));
 scene.add(cube);
 
-let octa = createOctahedron(2, 'lemonchiffon', new THREE.Vector3(0, 1.6, -10));
+let octa = createOctahedron(0.5, 'lemonchiffon', new THREE.Vector3(0, 1.6, -2));
 scene.add(octa);
 
-let dodeca = createDodecahedron(2, 'skyblue', new THREE.Vector3(4, 1.6, -10));
+let dodeca = createDodecahedron(0.5, 'skyblue', new THREE.Vector3(1, 1.6, -2));
 scene.add(dodeca);
 
-let icosa = createIcosahedron(2, 'pink', new THREE.Vector3(0, -2.4, -10));
+let icosa = createIcosahedron(0.5, 'pink', new THREE.Vector3(0, 0.6, -2));
 scene.add(icosa);
 
 // Make a renderer that fills the screen
